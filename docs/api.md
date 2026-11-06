@@ -42,7 +42,7 @@
 { "id": 7, "date": "2026-11-07", "mood": "CALM", "memo": "산책했다" }
 ```
 
-- `memo`: 최대 글자 수 확인 중
+- `memo`: 1~50자. 50자를 넘으면 400 `MEMO_TOO_LONG`
 
 ## 3. 기분 통계 조회
 
@@ -52,19 +52,21 @@
 {
   "total": 6,
   "items": [
-    { "moodCode": "HAPPY", "cnt": 2 },
-    { "moodCode": "CALM", "cnt": 1 },
-    { "moodCode": "SAD", "cnt": 1 },
-    { "moodCode": "ANGRY", "cnt": 1 },
-    { "moodCode": "TIRED", "cnt": 1 }
+    { "mood_code": "HAPPY", "memo_count": 2 },
+    { "mood_code": "CALM", "memo_count": 1 },
+    { "mood_code": "SAD", "memo_count": 1 },
+    { "mood_code": "ANGRY", "memo_count": 1 },
+    { "mood_code": "TIRED", "memo_count": 1 }
   ]
 }
 ```
 
-- `items`는 기분 코드 5개를 항상 위 순서대로 모두 반환한다. 기록이 없으면 `cnt: 0`
+- `items`는 기분 코드 5개를 항상 위 순서대로 모두 반환한다. 기록이 없으면 `memo_count: 0`
 
 ## 변경 이력
 
 | 날짜 | 내용 |
 | --- | --- |
+| 2026-11-06 | 통계 응답 필드명 변경: `moodCode` → `mood_code`, `cnt` → `memo_count` (DB 컬럼명과 통일, snake_case) |
+| 2026-11-06 | 메모 최대 글자 수 50자로 확정 |
 | 2026-11-03 | 최초 작성 |
